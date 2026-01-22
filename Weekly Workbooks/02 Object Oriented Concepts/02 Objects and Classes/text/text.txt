@@ -1,0 +1,25 @@
+**Objects** and **Classes** are fundamental building blocks of Object Oriented code that were introduced in the lecture session.
+The slides and videos linked to above provide a recap of these concepts - what them again now if you need to refresh your memory.
+Once you are happy with the concepts presented in the lecture materials, attempt the following practical activity in order to apply your knowledge:
+- Open up the `Shapes` project that we gave you last week and find the `Triangle` class file (it should be somewhere in the `src/main/java` folder !)
+- Add a constructor method to the `Triangle` class that takes three `int` parameters (which will be the lengths of each side of the triangle)
+- Add some `int` attributes to the top of the `Triangle` class and use these to store the lengths of the three sides passed into the constructor
+- Write a method called `getLongestSide` that returns the length of the longest side of the triangle (i.e. the largest of the three ints)
+
+Inside the project's `main` method (which is contained in the `Shapes` file), add the following code to create a new instance of
+the `Triangle` class and print out its longest side:
+
+``` java
+Triangle testTriangle = new Triangle(5, 7, 9);
+int longestSide = testTriangle.getLongestSide();
+System.out.println("The longest side of the triangle is " + longestSide);
+```
+
+Create a number of different instances of `Triangle`, each with different length sides
+and check that your `getLongestSide` method operates as expected for each instance.
+
+Notice how in the above code you can "glue" separate Strings together in Java by using the `+` concatenation operator.
+Java will even let you concatenate _different_ types together (in the above example, a `String` and an `int`).
+
+Now use this knowledge to add a `toString` method to your Triangle class that returns a suitable `String` that describing the Triangle
+(For example, `toString` should return `This is a Triangle with sides of length 4, 5, 7`)
