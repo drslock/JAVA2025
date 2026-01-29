@@ -1,0 +1,18 @@
+Common to most programming languages, Java provides an **array** data structure (similar in many ways to that found in C). In Java, arrays can hold primitives
+(e.g. `int`, `float`, `char`, `boolean` etc) or alternatively complex Objects (such as `Strings`, `Robots` or even `Triangles`) !
+
+Take a look at the slides and video above for more information on using arrays in Java.
+Then (in your main method) create an array of size 100 that can hold `TwoDimensionalShapes`.
+Fill this array with randomly chosen shapes (`Circles`, `Rectangles`, `Triangles`).
+In order to randomly select a shape from those available, you may like to make use of the
+Java `Math.random()` method. This will return a randomly selected double precision floating point
+number (somewhere between 0.0 and 1.0). You will need to write an IF statement and use some cunning maths
+to look at this number and decide which shape to create.
+
+Once you have filled the array with 100 random shapes, loop through it and print out the details of each shape in turn.
+At the end of your main method, print out a summary of how many `Triangles` were in the array.
+In order to do this, you will need to make use of an integer counter variable to keep a tally of the number of triangles encountered.
+You will also need to make use of the `instanceof` operator to check the type of each instance in the array.
+Notice how this use of `instanceof` is much more logical than the previous use of the keyword - we are using it to identify the
+class which each object is an instance of !
+

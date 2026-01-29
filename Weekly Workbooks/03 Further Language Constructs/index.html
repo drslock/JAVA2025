@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03 Further Language Constructs</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">03 Further Language Constructs</h1>
+</header>
+<h2 id="further-language-constructs">Further Language Constructs</h2>
+<h3 id="task-1-introduction">Task 1: Introduction</h3>
+<p>The aim of this workbook is to introduce further important concepts
+and constructs from the Java programming language. In order to support
+this, we will continue working with the “Shapes” projects from the last
+two weeks, which you will extend and enhance with additional features
+and functionality. As before, each section in this workbook links to
+some fragments of teaching materials that introduce a concept, as well
+as an activity to undertake that will allow you to apply your
+knowledge.</p>
+<h1 id="section"></h1>
+<h3 id="task-2-abstract-classes">Task 2: Abstract Classes</h3>
+<p><a href='02%20Abstract%20Classes/slides/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='02%20Abstract%20Classes/video/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a></p>
+<p>An inspection of the code inside the <code>TwoDimensionalShape</code>
+class (found somewhere in the <code>src/main/java/</code> folder of the
+Maven project) will reveal that the class has two
+<strong>abstract</strong> methods. These are methods <em>without</em>
+implementations - they have signatures (“prototypes”), but no internal
+code. View the slides and video lecture above to find out more about the
+notion of <strong>abstract</strong> and the reasons why we might want to
+use this feature of Java.</p>
+<p>Now, inside your <code>Triangle</code> class, write complete
+<code>calculateArea</code> and <code>calculatePerimeterLength</code>
+methods so that each performs a suitable calculation and returns an
+appropriate result. These two methods will <strong>override</strong> the
+abstract (blank) methods defined in the <code>TwoDimensionalShape</code>
+class.</p>
+<p>The reason why these two methods were originally defined as
+<strong>abstract</strong> in the <code>TwoDimensionalShape</code> class
+is as follows… All shapes <em>will</em> have an area and perimeter
+length, however these will be <em>calculated</em> differently depending
+on the particular shape being represented. For circles these are
+calculated using their radius and Pi, with Rectangles this involves
+using their width and height etc. As such, we can’t write anything
+<em>generally useful</em> inside the <code>TwoDimensionalShape</code>
+class - we have to leave everything down to the subclasses themselves.
+That said, it is still worth <em>defining</em> that all shapes have area
+and perimeter calculations (even if they have to be left blank in the
+<code>TwoDimensionalShape</code> class).</p>
+<p>Once you have implemented area and perimeter calculation methods for
+your <code>Triangle</code> class, create a few <code>Triangles</code>
+with different length sides and call your freshly created methods to
+make sure they work correctly. You <em>could</em> do this by just adding
+a few lines of code to your main method, however it is good practice to
+create a JUnit test file in the <code>src/test/java</code> folder.</p>
+<p><strong>Hints &amp; Tips:</strong><br />
+Calculating the perimeter length of a triangle is easy.<br />
+In order to calculate the area you might like to use
+<a href="https://www.mathsisfun.com/geometry/herons-formula.html" target="_blank">Herons
+Formula</a>.</p>
+<h1 id="section-1"></h1>
+<h3 id="task-3-interfaces">Task 3: Interfaces</h3>
+<p><a href='03%20Interfaces/slides/segment-1.pdf' target='_blank'> <img
+src="../../resources/icons/slides.png" /> </a>
+<a href='03%20Interfaces/video/segment-1.mp4' target='_blank'> <img
+src="../../resources/icons/video.png" /> </a></p>
+<p>As we have discussed previously, some shapes have a number of
+variants, whilst others (such as Circles) have only one. It would be
+useful to have some kind of “marker” that indicates whether or not a
+particular shape has multiple variants.</p>
+<p>One way to do this is using a Java <strong>Interface</strong> - this
+is a mechanism, independent of the class hierarchy, that allows us to
+“mark” classes as having particular characteristics. You can think of an
+Interface as a “contract” that the class “conforms to” - guaranteeing to
+provide certain properties and features. Take a look at the slides and
+video above for more detailed information about interfaces.</p>
+<p>As an illustration of interfaces in action, we have provided a
+<code>MultiVariantShape</code> interface in the Maven project that can
+be used to indicate that a shape has more than one variant. We can mark
+our <code>Triangle</code> class as a shape which has multiple variants
+by updating the class definition so that it <code>implements</code> the
+<code>MultiVariantShape</code> interface:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle <span class="kw">extends</span> TwoDimensionalShape <span class="kw">implements</span> MultiVariantShape</span></code></pre></div>
+<p>This indicates that the <code>Triangle</code> class conforms to the
+properties and features of the <code>MultiVariantShape</code>
+interface.</p>
+<p>Elsewhere in our code, we can check to see if a particular object
+conforms to an interface by using the <code>instanceof</code> keyword
+Note that this is not a particularly suitable name - it is part of Java
+and is used for other purposes (where the name does make sense !). We
+can check any shape object to see if it implements the
+<code>MultiVariantShape</code> interface using the following code:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>shape <span class="kw">instanceof</span> MultiVariantShape<span class="op">)</span> <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;This shape has multiple variants&quot;</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;This shape has only one variant&quot;</span><span class="op">)</span></span></code></pre></div>
+<p>Try creating a number of different types of shape (Circles,
+Rectangles, Triangles etc) and check each to see if it implements the
+<code>MultiVariantShape</code> using the <code>instanceof</code>
+keyword. Again, you might like to write a JUnit test method to formally
+test this functionality.</p>
+<p>You may have noticed that the <code>MultiVariantShape</code>
+interface defines a method called <code>getVariant</code> that should
+return the particular variant of a shape. This allows code outside of
+the class to interrogate an instance in order to find out which variant
+it is. You will also notice that in the interface definition, their is
+no code that provides an implementation of this method - it your job as
+the programmer’s to write this ! Luckily you wrote this method during
+the previous workbook, so it is therefore a quick and an easy job to
+implement the <code>MultiVariantShape</code> interface in your Triangle
+class at this stage !</p>
+<h1 id="section-2"></h1>
+<h3 id="task-4-arrays">Task 4: Arrays</h3>
+<p><a href='04%20Arrays/slides/segment-1.pdf' target='_blank'> <img
+src="../../resources/icons/slides.png" /> </a>
+<a href='04%20Arrays/video/segment-1.mp4' target='_blank'> <img
+src="../../resources/icons/video.png" /> </a></p>
+<p>Common to most programming languages, Java provides an
+<strong>array</strong> data structure (similar in many ways to that
+found in C). In Java, arrays can hold primitives (e.g. <code>int</code>,
+<code>float</code>, <code>char</code>, <code>boolean</code> etc) or
+alternatively complex Objects (such as <code>Strings</code>,
+<code>Robots</code> or even <code>Triangles</code>) !</p>
+<p>Take a look at the slides and video above for more information on
+using arrays in Java. Then (in your main method) create an array of size
+100 that can hold <code>TwoDimensionalShapes</code>. Fill this array
+with randomly chosen shapes (<code>Circles</code>,
+<code>Rectangles</code>, <code>Triangles</code>). In order to randomly
+select a shape from those available, you may like to make use of the
+Java <code>Math.random()</code> method. This will return a randomly
+selected double precision floating point number (somewhere between 0.0
+and 1.0). You will need to write an IF statement and use some cunning
+maths to look at this number and decide which shape to create.</p>
+<p>Once you have filled the array with 100 random shapes, loop through
+it and print out the details of each shape in turn. At the end of your
+main method, print out a summary of how many <code>Triangles</code> were
+in the array. In order to do this, you will need to make use of an
+integer counter variable to keep a tally of the number of triangles
+encountered. You will also need to make use of the
+<code>instanceof</code> operator to check the type of each instance in
+the array. Notice how this use of <code>instanceof</code> is much more
+logical than the previous use of the keyword - we are using it to
+identify the class which each object is an instance of !</p>
+<h1 id="section-3"></h1>
+<h3 id="task-5-class-variables-and-methods">Task 5: Class Variables and
+Methods</h3>
+<p><a href='05%20Class%20Variables%20and%20Methods/slides/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='05%20Class%20Variables%20and%20Methods/video/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a></p>
+<p>In the previous task, we counted the number of <code>Triangles</code>
+in the array by looping through it. But there is an alternative approach
+to achieving the same objective (without putting code inside the main
+loop). We could maintain a counter <em>inside</em> the Triangle class to
+keep track of of how many <code>Triangles</code> have been created. Each
+time the Triangle class constructor is called, we can increment the
+counter in order to keep track of the number of Triangles. This is an
+elegant approach because it encapsulates the “population” count inside
+the Triangle class itself - which is nice.</p>
+<p>There is however one problem this with approach - we only want
+<em>one</em> counter for the whole program (not a counter inside
+<em>each and every</em> <code>Triangle</code> instance). For this
+reason, we can’t just use a “normal” variable. View the slides and audio
+narration above to gain an understanding of the difference between
+<strong>instance</strong> and <strong>class</strong> variables. Then add
+an integer <strong>class</strong> variable to your <code>Triangle</code>
+class to keep track of how many <code>Triangles</code> have been
+created. Once you have declared this variable, update your
+<code>Triangle</code> constructor method so that the counter is
+incremented each time a new <code>Triangle</code> is created. You should
+also add a <code>getPopulation</code> method to your
+<code>Triangle</code> class that returns the current value of the
+counter variable, so that it can be accessed from outside the class.</p>
+<p>Update your main method, so that it prints out the number of
+<code>Triangles</code> that have been created using the class variable
+population counter <em>as well as</em> the previous loop counter from
+task 4 (just to make sure that both counters agree !)</p>
+<p>Just as we can create <strong>class variables</strong> that are
+associated with the class (rather than each instance), we can also write
+<strong>class methods</strong> which are similarly associated with the
+class (rather than the instances). You have already encountered just
+such a class method (namely the <code>random</code> method of the
+<code>Math</code> class). Have a think about the reasons why you might
+wish to write a class method, rather than an instance method.
+Considering the <code>Triangle</code> class - might some of its methods
+be better suited to being class methods, rather than instance methods
+?</p>
+<h1 id="section-4"></h1>
+<h3 id="task-6-casting">Task 6: Casting</h3>
+<p>Let’s imagine that we wanted to find out the variant of all
+<code>Triangles</code> that are stored in our array. We would need to be
+very careful about how we went about interrogating the elements of that
+array. We can’t call <code>getVariant</code> on just any element, since
+not all objects will actually <em>be</em> a <code>Triangle</code> (it
+might be a <code>Circle</code> for example, which doesn’t support the
+<code>getVariant</code> method !) Java will in fact block us from trying
+to call <code>getVariant</code> on a <code>TwoDimensionalShape</code>
+(try it and see !).</p>
+<p>To solve this problem, Java allows us <strong>cast</strong> objects
+from one class into a <em>more specific</em> class. For example, we can
+“down-cast” (or “narrow-cast”) any <code>TwoDimensionalShape</code> into
+one of its sub-classes. We can then quite happily call methods of that
+subclass on the instance. For example, in the code fragment below we
+extract the first element from the array, convert it into a
+<code>Triangle</code> and then call the <code>getVariant</code> method
+on it:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TwoDimensionalShape<span class="op">[]</span> shapes <span class="op">=</span> <span class="kw">new</span> TwoDimensionalShape<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>TwoDimensionalShape firstShape <span class="op">=</span> shapes<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Down-cast the shape into a triangle</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Triangle firstTriangle <span class="op">=</span> <span class="op">(</span>Triangle<span class="op">)</span>firstShape<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>TriangleVariant variant <span class="op">=</span> firstTriangle<span class="op">.</span><span class="fu">getVariant</span><span class="op">();</span></span></code></pre></div>
+<p>The down-casting code above asks Java to “trust” that the
+<code>firstShape</code> is a <code>Triangle</code>. As a consequence of
+this, we can then treat this object as though it were a
+<code>Triangle</code> and thus call any method of the
+<code>Triangle</code> class on it.</p>
+<p>This is fine, <em>provided</em> that the shape at element 0 of the
+array <em>is actually</em> a <code>Triangle</code>.<br />
+But what happens if it <em>isn’t</em> ?<br />
+What if it is a <code>Circle</code> instead ?<br />
+Will Java let us convert a <code>Circle</code> into a
+<code>Triangle</code> in this way ?</p>
+<p>Why not try it and see what happens !</p>
+<h1 id="section-5"></h1>
+<h3 id="task-7-multiple-inheritance">Task 7: Multiple Inheritance</h3>
+<p><a href='07%20Multiple%20Inheritance/slides/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='07%20Multiple%20Inheritance/video/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a></p>
+<p>As a final topic for this workbook, let us think about the
+challenging concept of <em>multiple</em> inheritance. In some situations
+it might be useful for a class to have <em>multiple</em>
+parents/superclasses. This would allow it to derive methods and
+attributes from numerous different sources. This is however dangerous -
+take a look at the slides and video above to find out why !</p>
+<p>Java’s solution to this is to only allow single inheritance :o(<br />
+But to augment this with <strong>interfaces</strong> :o)</p>
+<p>Although a bit of a compromise, this combination of features allows
+us to gain <em>some</em> of the benefits of multiple inheritance, whilst
+at the same time avoiding many of the main pitfalls.</p>
+<h1 id="section-6"></h1>
+</body>
+</html>

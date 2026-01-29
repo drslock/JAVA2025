@@ -1,0 +1,9 @@
+As a final topic for this workbook, let us think about the challenging concept of _multiple_ inheritance.
+In some situations it might be useful for a class to have _multiple_ parents/superclasses.
+This would allow it to derive methods and attributes from numerous different sources.
+This is however dangerous - take a look at the slides and video above to find out why !
+
+Java's solution to this is to only allow single inheritance :o(  
+But to augment this with **interfaces** :o)  
+
+Although a bit of a compromise, this combination of features allows us to gain _some_ of the benefits of multiple inheritance, whilst at the same time avoiding many of the main pitfalls.

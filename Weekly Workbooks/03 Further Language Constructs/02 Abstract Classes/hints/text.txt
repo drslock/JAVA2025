@@ -1,0 +1,3 @@
+Calculating the perimeter length of a triangle is easy.  
+In order to calculate the area you might like to use
+<a href="https://www.mathsisfun.com/geometry/herons-formula.html" target="_blank">Herons Formula</a>.

@@ -1,0 +1,25 @@
+In the previous task, we counted the number of `Triangles` in the array by looping through it.
+But there is an alternative approach to achieving the same objective (without putting code inside the main loop).
+We could maintain a counter _inside_ the Triangle class to keep track of of how many `Triangles` have been created.
+Each time the Triangle class constructor is called, we can increment the counter in order to keep track of the number of Triangles.
+This is an elegant approach because it encapsulates the "population" count inside the Triangle class itself - which is nice.
+
+There is however one problem this with approach - we only want _one_ counter for the whole program
+(not a counter inside _each and every_ `Triangle` instance). For this reason, we can't just use a "normal" variable.
+View the slides and audio narration above to gain an understanding of the difference
+between **instance** and **class** variables. Then add an integer **class** variable to your `Triangle` class to
+keep track of how many `Triangles` have been created. Once you have declared this variable, update your
+`Triangle` constructor method so that the counter is incremented each time a new `Triangle` is created.
+You should also add a `getPopulation` method to your `Triangle` class that returns the current value of the
+counter variable, so that it can be accessed from outside the class.
+
+Update your main method, so that it prints out the number of `Triangles` that have been created using
+the class variable population counter _as well as_ the previous loop counter from task 4
+(just to make sure that both counters agree !)
+
+Just as we can create **class variables** that are associated with the class (rather than each instance),
+we can also write **class methods** which are similarly associated with the class (rather than the instances).
+You have already encountered just such a class method (namely the `random` method of the `Math` class).
+Have a think about the reasons why you might wish to write a class method, rather than an instance method.
+Considering the `Triangle` class - might some of its methods be better suited to being class methods,
+rather than instance methods ?

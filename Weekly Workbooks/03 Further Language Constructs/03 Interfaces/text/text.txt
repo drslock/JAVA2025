@@ -1,0 +1,38 @@
+As we have discussed previously, some shapes have a number of variants,
+whilst others (such as Circles) have only one. 
+It would be useful to have some kind of "marker" that indicates
+whether or not a particular shape has multiple variants.
+
+One way to do this is using a Java **Interface** - this is a mechanism, independent of the class hierarchy,
+that allows us to "mark" classes as having particular characteristics. You can think of an Interface as a "contract"
+that the class "conforms to" - guaranteeing to provide certain properties and features.
+Take a look at the slides and video above for more detailed information about interfaces.
+
+As an illustration of interfaces in action, we have provided a `MultiVariantShape` interface in the Maven
+project that can be used to indicate that a shape has more than one variant.
+We can mark our `Triangle` class as a shape which has multiple variants by updating the class definition
+so that it `implements` the `MultiVariantShape` interface:
+``` java
+class Triangle extends TwoDimensionalShape implements MultiVariantShape
+```
+This indicates that the `Triangle` class conforms to the properties and features of the `MultiVariantShape` interface.
+
+Elsewhere in our code, we can check to see if a particular object conforms to an interface by using the `instanceof` keyword
+Note that this is not a particularly suitable name - it is part of Java and is used for other purposes (where the name does make sense !).
+We can check any shape object to see if it implements the `MultiVariantShape` interface using the following code:
+``` java
+if(shape instanceof MultiVariantShape) System.out.println("This shape has multiple variants")
+else System.out.println("This shape has only one variant")
+```
+
+Try creating a number of different types of shape (Circles, Rectangles, Triangles etc) and check each to see if it
+implements the `MultiVariantShape` using the `instanceof` keyword. Again, you might like to write a JUnit test method to
+formally test this functionality.
+
+You may have noticed that the `MultiVariantShape` interface defines a method called `getVariant`
+that should return the particular variant of a shape. This allows code outside of the class to interrogate an instance
+in order to find out which variant it is. You will also notice that in the interface definition, their is no code that
+provides an implementation of this method - it your job as the programmer's to write this !
+Luckily you wrote this method during the previous workbook, so it is therefore a quick and an easy job to implement
+the `MultiVariantShape` interface in your Triangle class at this stage !
+

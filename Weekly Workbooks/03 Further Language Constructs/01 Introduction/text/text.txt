@@ -1,0 +1,5 @@
+The aim of this workbook is to introduce further important concepts and constructs from the Java programming language.
+In order to support this, we will continue working with the "Shapes" projects from the last two weeks,
+which you will extend and enhance with additional features and functionality.
+As before, each section in this workbook links to some fragments of teaching materials that introduce a concept,
+as well as an activity to undertake that will allow you to apply your knowledge. 

@@ -1,0 +1,32 @@
+Let's imagine that we wanted to find out the variant of all `Triangles` that are stored in our array.
+We would need to be very careful about how we went about interrogating the elements of that array.
+We can't call `getVariant` on just any element, since not all objects will actually _be_ a `Triangle`
+(it might be a `Circle` for example, which doesn't support the `getVariant` method !)
+Java will in fact block us from trying to call `getVariant` on a `TwoDimensionalShape`
+(try it and see !).
+
+To solve this problem, Java allows us **cast** objects from one class into a _more specific_ class.
+For example, we can "down-cast" (or "narrow-cast") any `TwoDimensionalShape` into one of its sub-classes.
+We can then quite happily call methods of that subclass on the instance.
+For example, in the code fragment below we extract the first element from the array,
+convert it into a `Triangle` and then call the `getVariant` method on it:
+
+``` java
+TwoDimensionalShape[] shapes = new TwoDimensionalShape[100];
+...
+TwoDimensionalShape firstShape = shapes[0];
+// Down-cast the shape into a triangle
+Triangle firstTriangle = (Triangle)firstShape;
+TriangleVariant variant = firstTriangle.getVariant();
+```
+
+The down-casting code above asks Java to "trust" that the `firstShape` is a `Triangle`.
+As a consequence of this, we can then treat this object as though it were a `Triangle` and thus call
+any method of the `Triangle` class on it.
+
+This is fine, _provided_ that the shape at element 0 of the array _is actually_ a `Triangle`.  
+But what happens if it _isn't_ ?  
+What if it is a `Circle` instead ?  
+Will Java let us convert a `Circle` into a `Triangle` in this way ?
+
+Why not try it and see what happens !
