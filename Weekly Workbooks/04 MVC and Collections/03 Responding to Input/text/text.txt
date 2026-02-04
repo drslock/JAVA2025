@@ -1,0 +1,30 @@
+The first step in creating a fully operational game is to get your program to respond to input from the user.
+Players will take it in turns to enter desired cell position into the `OXOGame` GUI window as demonstrated in the video above
+(note there is no audio narration in this particular video !).
+`OXOGame` deals with reading in keypresses from the user and will then pass the inputted command to the `OXOController` for processing
+(via a call to the `handleIncomingCommand` method).
+Your task is to interpret this incoming command and update the game state accordingly.
+
+An inputted cell position consists of the row letter and the column number of the cell a player wishes to "claim".
+For example, if a user wished to claim the centre cell of a 3x3 board, they would type: `b2`. Note that cell
+identifiers are _case insensitive_ - so that `B2` is equivalent to (and as equally acceptable as) `b2`.
+
+Once one player has entered a command and the board has been updated, play should switch to the next player.
+Note that the order of play should be the same as the order that players were added to the model
+(i.e. the first player added to the game will take the first go, followed by the second etc.)
+
+When updating the game state, you should set the 'current player' to be the player _whose turn it is next_.
+This is to ensure that the view shows graphically the player _who is about to take a turn_.
+
+It is possible that the user may make a mistake when interacting with the system and enter a "bad" cell identifier.
+Do not try to deal with these here - we will address error handling in the next workbook.
+For the time being, you may assume that any cell identifiers entered by the user are always valid.
+
+You should test your code by inputting a series of cell identifiers into the `OXOGame` window and check to make sure
+that the board updates as expected. Note that at this stage in the exercise, 'win detection' has not yet been implemented,
+so as a result the game will never end !
+
+If at any point the players get bored of a game, or wish to start a new game, they can press the `ESC` key to reset the board.
+In order to fully implement this reset, you will need to add some code to the `reset` method in your `OXOController`.
+This should call the relevant methods of the `OXOModel` class in order to clear the board and reinitialise the game state
+to the original settings.

@@ -1,0 +1,7 @@
+In order to manually test your implementation of dynamic board size, the `OXOGame` class contains interaction features
+that allow the user to change the size of the board during the game. If the user **left** clicks their mouse on either the grey column or row labels, that dimension will **expand**. If the user **right** clicks their mouse (or `control` click on a Mac) on either the grey column or row labels, that dimension will **shrink**. Note that clicking with the mouse will cause the add/remove row/column methods of your `OXOController` to be called. You will therefore need to update these 4 methods so that they in turn call the relevant methods of the `OXOModel`.
+
+The minimum allowable board size is 3x3 and the maximum allowable board size 9x9 - your event handler should not allow the board size to change outside of this range. In addition to this, your game should not allow the board size to be reduced if the rows/columns being removed are not empty (i.e. don't allow reduction if it will remove previous moves).
+
+You should NOT alter the board size when the game is reset (i.e. when the `ESC` key is pressed).
+Keep the board size the same and leave it to the players to change the dimensions, if they wish.

@@ -1,0 +1,23 @@
+The problem with manual testing is that it can be a very time consuming activity to undertake.
+Imagine trying to test the 'draw' state for a 9x9 board - this would involve taking 81 separate turns to reach the end of the game.
+Now imagine having to test this draw state a number of times (maybe your code didn't work the first time you tried it -
+and you have to change your code and test it again). This would soon become very tedious !
+
+This is where automated testing can become invaluable - we can test the 'model' and 'controller' components of the system by replacing
+the graphical 'view' with an automated test script. The game can then be extensively tested without having to click the mouse or press a key.
+
+We have provided a skeleton test script called `ExampleControllerTests` that can be found in the `src/test/java/edu/uob` folder.
+You will notice that the file has only a couple of test methods in it.
+You should populate this test script with a comprehensive set of test cases that will fully test your game.
+Remember that you can run these tests inside IntelliJ, by clicking on the green "run" icons to the left of each method in the editor.
+Alternatively you can run them from the command line using Maven.
+
+These kinds of test scripts are an essential element of Test-Driven Development (TDD) as discussed in the Software Engineering unit.
+They help you to think about what the system needs to do _in advance_ of implementation, as well as allowing you to keep track of the
+correct operation of your code, _as you develop it_. With this in mind, you should add a suitable range of tests to your project as you progress.
+Remember that your aim is to cover all required features of the game and verify the correct operation of your code in all situations.
+
+Such test cases are not easy to come up with - writing a good set of tests is a difficult and time consuming activity.
+This is because writing test cases requires you to perform "problem analysis" in order to understand the situation
+and think about all the possible states of the system (something that _we_ did for you in the Triangles exercise !).
+Such analysis is an essential developer skill, as is the ability to document the outcomes of this analysis formally as a set of test cases.

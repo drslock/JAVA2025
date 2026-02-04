@@ -1,0 +1,5 @@
+When viewing the example test script, you may have noticed a new test feature not previously encountered - the `@BeforeEach` annotation
+is used to mark a method which will be executed _before_ any `@Test` methods are run.
+This allows us to create a "setup" method that will initialise any instances that are required to successfully run a `@Test` method.
+You will also see the use of the `()->` 'lambda' expression. Don't worry about this for the moment, we will consider it in more detail in the next workbook.
+

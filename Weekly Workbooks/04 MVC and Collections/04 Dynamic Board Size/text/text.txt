@@ -1,0 +1,27 @@
+Currently the core data structure of the `OXOModel` class is a 2D array.
+This allows us to maintain a data representation of the current state of the game board.
+There is however a problem in that this constrains us to a particular board size (namely 3x3).
+It would be nice to be able to alter the size of the board _during_ a game !
+For example, if during a game it became clear that there was going to be a draw
+(with all cells being occupied, but with no clear winner)
+it would be nice if the user could optionally increase the board size in order to allow play to continue
+(in the hope that a winner might eventually triumph !)
+
+Luckily there are a number of dynamic data types (such as Queues, Stacks, Lists etc.)
+that are provided by the core Java libraries that allow us to store _dynamically_ sized groups of objects.
+Take a look at the slides and video above to gain an understanding of these data structures and the problems
+and challenges involved in using them.
+
+These slides and videos cover a feature of Java called **Generics**. This mechanism allows us to designate a particular compound data structure to hold a specific object type. This allows us to make use of untyped data structures, whilst at the same time enforcing type checking at compile time.
+
+Using the knowledge you have gained from the above slides and videos, convert the board grid data structure contained in the `OXOModel` class from arrays into an
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" target="_blank">ArrayList</a> data structure.
+
+In order to fully implement support for dynamic board sizes, you will need to:
+- Change your `cells` variable from a 2D array into some `ArrayList` elements
+- Alter the OXOModel constructor to initialise your `ArrayList` data structure
+- Update the cell owner "getter" and "setter" methods to operate on the `ArrayList` elements
+- Add two methods to `OXOModel` called `addColumn()` and `addRow()` that allow the board size to grow
+- Add two methods to `OXOModel` called `removeColumn()` and `removeRow()` that allow the board size to shrink
+
+You should make your code as robust as possible, preventing the data held in the model from getting into any undesirable states. Remember that a key feature of encapsulation is enforcing the _safe_ access and manipulation of object attributes.

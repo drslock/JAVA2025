@@ -1,0 +1,6 @@
+When you get to this point in the workbook, you should have implemented all of the core features of the OXO game.
+This is not the end of the exercise however - in the next workbook you will get to implement an error handling mechanism
+as well as a number of extensions to the basic game. It is worth pausing for a moment to see how far you have come.
+Take a look at your code to see if there is anything that could be refactored to improve structure and readability.
+You should be making backups of your work regularly - if you haven't done so recently, now is a good time.
+Maybe also time for a couple of games of OXO before moving on !

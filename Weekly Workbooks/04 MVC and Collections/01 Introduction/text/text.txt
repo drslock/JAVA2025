@@ -1,0 +1,5 @@
+The next TWO workbooks will lead you through an extended programming exercise.
+Your aim in this exercise is to build a digital version of the classic turn-taking game
+"Noughts and Crosses" / "Tic-Tac-Toe" / "OXO". You will NOT be required to construct the _entire_ game...
+the Graphical User Interface (see screenshot below) and the core Data Model classes will be provided for you.
+You will however be required to write the 'Controller' that handles all of the game logic.

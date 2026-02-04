@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>04 MVC and Collections</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">04 MVC and Collections</h1>
+</header>
+<h2 id="mvc-and-collections">MVC and Collections</h2>
+<h3 id="task-1-introduction">Task 1: Introduction</h3>
+<p>The next TWO workbooks will lead you through an extended programming
+exercise. Your aim in this exercise is to build a digital version of the
+classic turn-taking game “Noughts and Crosses” / “Tic-Tac-Toe” / “OXO”.
+You will NOT be required to construct the <em>entire</em> game… the
+Graphical User Interface (see screenshot below) and the core Data Model
+classes will be provided for you. You will however be required to write
+the ‘Controller’ that handles all of the game logic.</p>
+<p><img src="01%20Introduction/images/game.jpg" /></p>
+<h1 id="section"></h1>
+<h3 id="task-2-model-view-controller">Task 2: Model-View-Controller</h3>
+<p><a href='02%20Model-View-Controller/slides/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='02%20Model-View-Controller/video/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a></p>
+<p>The Model-View-Controller (MVC) ‘pattern’ is a common structural
+convention that is used widely in the development of interactive
+systems. To help get you started in this exercise, you have been
+provided with a <a href="cw-oxo/" target="_blank">Maven template</a>
+that conforms to the Model-View-Controller pattern. Copy this project
+into your development folder and add code to achieve each of the tasks
+in this workbook. It is NOT a good idea to work on the project “in-situ”
+(i.e. still inside the repository folder), this is because it might get
+overwritten by future GitHub pull commands !</p>
+<p>Take a look at the slides and video above for an introduction to the
+concept of the Model-View-Controller pattern, then use the knowledge
+gained to explore the OXO game template.</p>
+<p>The <code>OXOModel</code> class contains all of the core data
+structures required by the game - you can use the public methods
+provided by this class in order to access and manipulate the following
+internal state:</p>
+<ul>
+<li>The number of cells in a row required to win the game (3 in a
+standard game)</li>
+<li>The set of players currently playing the game (2 in a standard game
+!)</li>
+<li>The player whose turn it currently is</li>
+<li>The “owner” (player who has claimed) each cell in the game grid</li>
+<li>The winner of the game (when the game ends)</li>
+<li>Whether or not the game has been drawn (all cells filled, but with
+no winner !)</li>
+</ul>
+<p>The ‘Rendering Logic’ has already been implemented for you: any
+changes to the state of the <code>OXOModel</code> will be automatically
+rendered by the <code>OXOView</code>. Your main task is therefore to
+implement the ‘Event Handling Logic’ in the <code>OXOCOntroller</code>
+class.</p>
+<p>The code that you write must access and manipulate the state of the
+<code>OXOModel</code> by calling appropriate methods on it. Note that
+you will NOT need to interface directly with the <code>OXOView</code>
+class.</p>
+<p>You may alter and add new methods to the <code>OXOController</code>
+and <code>OXOModel</code> classes, however you should NOT change the
+signatures of any of the <em>existing</em> methods. You should NOT alter
+the <code>OXOView</code> or <code>OXOGame</code> classes at all (this is
+not part of the assignment). The remaining tasks in this week’s (and
+next week’s) workbooks will lead you through the features that you need
+to implement to complete the exercise.</p>
+<p>Finally, it is very important to remember that the
+<code>OXOModel</code> class should be used to maintain ALL game state.
+You should definitely NOT store any game state in your
+<code>OXOController</code> class - bad things might happen if you do
+!</p>
+<p><strong>Hints &amp; Tips:</strong><br />
+You may notice that some of the classes that we have provided in the
+template project implement the <code>Serializable</code> interface and
+many have a private attribute called <code>serialVersionUID</code>. GUI
+applications written in Java require classes to meet these requirements
+so that the application can be stored (‘serialized’) in certain
+situations. We won’t be doing any serialization in this exercise,
+however we still need to include the above features in the project
+template (otherwise we will get warnings when we try to compile the
+project).</p>
+<h1 id="section-1"></h1>
+<h3 id="task-3-responding-to-input">Task 3: Responding to Input</h3>
+<p><a href='03%20Responding%20to%20Input/video/oxo.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a></p>
+<p>The first step in creating a fully operational game is to get your
+program to respond to input from the user. Players will take it in turns
+to enter desired cell position into the <code>OXOGame</code> GUI window
+as demonstrated in the video above (note there is no audio narration in
+this particular video !). <code>OXOGame</code> deals with reading in
+keypresses from the user and will then pass the inputted command to the
+<code>OXOController</code> for processing (via a call to the
+<code>handleIncomingCommand</code> method). Your task is to interpret
+this incoming command and update the game state accordingly.</p>
+<p>An inputted cell position consists of the row letter and the column
+number of the cell a player wishes to “claim”. For example, if a user
+wished to claim the centre cell of a 3x3 board, they would type:
+<code>b2</code>. Note that cell identifiers are <em>case
+insensitive</em> - so that <code>B2</code> is equivalent to (and as
+equally acceptable as) <code>b2</code>.</p>
+<p>Once one player has entered a command and the board has been updated,
+play should switch to the next player. Note that the order of play
+should be the same as the order that players were added to the model
+(i.e. the first player added to the game will take the first go,
+followed by the second etc.)</p>
+<p>When updating the game state, you should set the ‘current player’ to
+be the player <em>whose turn it is next</em>. This is to ensure that the
+view shows graphically the player <em>who is about to take a
+turn</em>.</p>
+<p>It is possible that the user may make a mistake when interacting with
+the system and enter a “bad” cell identifier. Do not try to deal with
+these here - we will address error handling in the next workbook. For
+the time being, you may assume that any cell identifiers entered by the
+user are always valid.</p>
+<p>You should test your code by inputting a series of cell identifiers
+into the <code>OXOGame</code> window and check to make sure that the
+board updates as expected. Note that at this stage in the exercise, ‘win
+detection’ has not yet been implemented, so as a result the game will
+never end !</p>
+<p>If at any point the players get bored of a game, or wish to start a
+new game, they can press the <code>ESC</code> key to reset the board. In
+order to fully implement this reset, you will need to add some code to
+the <code>reset</code> method in your <code>OXOController</code>. This
+should call the relevant methods of the <code>OXOModel</code> class in
+order to clear the board and reinitialise the game state to the original
+settings.</p>
+<h1 id="section-2"></h1>
+<h3 id="task-4-dynamic-board-size">Task 4: Dynamic Board Size</h3>
+<p><a href='04%20Dynamic%20Board%20Size/slides/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='04%20Dynamic%20Board%20Size/slides/segment-2.pdf' target='_blank'>
+<img src="../../resources/icons/slides.png" /> </a>
+<a href='04%20Dynamic%20Board%20Size/video/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a>
+<a href='04%20Dynamic%20Board%20Size/video/segment-2.mp4' target='_blank'>
+<img src="../../resources/icons/video.png" /> </a>
+<a href='04%20Dynamic%20Board%20Size/deep/segment-1.pdf' target='_blank'>
+<img src="../../resources/icons/deep.png" /> </a>
+<a href='04%20Dynamic%20Board%20Size/deep/segment-1.mp4' target='_blank'>
+<img src="../../resources/icons/deep.png" /> </a></p>
+<p>Currently the core data structure of the <code>OXOModel</code> class
+is a 2D array. This allows us to maintain a data representation of the
+current state of the game board. There is however a problem in that this
+constrains us to a particular board size (namely 3x3). It would be nice
+to be able to alter the size of the board <em>during</em> a game ! For
+example, if during a game it became clear that there was going to be a
+draw (with all cells being occupied, but with no clear winner) it would
+be nice if the user could optionally increase the board size in order to
+allow play to continue (in the hope that a winner might eventually
+triumph !)</p>
+<p>Luckily there are a number of dynamic data types (such as Queues,
+Stacks, Lists etc.) that are provided by the core Java libraries that
+allow us to store <em>dynamically</em> sized groups of objects. Take a
+look at the slides and video above to gain an understanding of these
+data structures and the problems and challenges involved in using
+them.</p>
+<p>These slides and videos cover a feature of Java called
+<strong>Generics</strong>. This mechanism allows us to designate a
+particular compound data structure to hold a specific object type. This
+allows us to make use of untyped data structures, whilst at the same
+time enforcing type checking at compile time.</p>
+<p>Using the knowledge you have gained from the above slides and videos,
+convert the board grid data structure contained in the
+<code>OXOModel</code> class from arrays into an
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" target="_blank">ArrayList</a>
+data structure.</p>
+<p>In order to fully implement support for dynamic board sizes, you will
+need to: - Change your <code>cells</code> variable from a 2D array into
+some <code>ArrayList</code> elements - Alter the OXOModel constructor to
+initialise your <code>ArrayList</code> data structure - Update the cell
+owner “getter” and “setter” methods to operate on the
+<code>ArrayList</code> elements - Add two methods to
+<code>OXOModel</code> called <code>addColumn()</code> and
+<code>addRow()</code> that allow the board size to grow - Add two
+methods to <code>OXOModel</code> called <code>removeColumn()</code> and
+<code>removeRow()</code> that allow the board size to shrink</p>
+<p>You should make your code as robust as possible, preventing the data
+held in the model from getting into any undesirable states. Remember
+that a key feature of encapsulation is enforcing the <em>safe</em>
+access and manipulation of object attributes.</p>
+<p><strong>Hints &amp; Tips:</strong><br />
+In order to manually test your implementation of dynamic board size, the
+<code>OXOGame</code> class contains interaction features that allow the
+user to change the size of the board during the game. If the user
+<strong>left</strong> clicks their mouse on either the grey column or
+row labels, that dimension will <strong>expand</strong>. If the user
+<strong>right</strong> clicks their mouse (or <code>control</code> click
+on a Mac) on either the grey column or row labels, that dimension will
+<strong>shrink</strong>. Note that clicking with the mouse will cause
+the add/remove row/column methods of your <code>OXOController</code> to
+be called. You will therefore need to update these 4 methods so that
+they in turn call the relevant methods of the <code>OXOModel</code>.</p>
+<p>The minimum allowable board size is 3x3 and the maximum allowable
+board size 9x9 - your event handler should not allow the board size to
+change outside of this range. In addition to this, your game should not
+allow the board size to be reduced if the rows/columns being removed are
+not empty (i.e. don’t allow reduction if it will remove previous
+moves).</p>
+<p>You should NOT alter the board size when the game is reset (i.e. when
+the <code>ESC</code> key is pressed). Keep the board size the same and
+leave it to the players to change the dimensions, if they wish.</p>
+<h1 id="section-3"></h1>
+<h3 id="task-5-win-detection">Task 5: Win detection</h3>
+<p>There is no point playing the game if nobody can actually win ! With
+this in mind, add code to a suitable location in your
+<code>OXOController</code> class so that it will detect when a win has
+been achieved. You should check for wins in all directions
+(horizontally, vertically and diagonally). Note that horizontal and
+vertical checking is <em>relatively</em> easy, but win checking of
+diagonals is a bit more difficult !</p>
+<p>If the game reaches a situation where all cells are filled, but no
+player has reached the win threshold, the game should be considered a
+“draw” and the model updated to reflect this (by calling the appropriate
+methods). Players may choose to accept a draw, or they might
+alternatively deciding to increase the board size and continue
+playing.</p>
+<p>You should attempt to make your <code>OXOController</code> as
+flexible and versatile as possible. It should therefore be able to
+perform win detection on grids of any size (not just the standard 3x3
+board).</p>
+<p>When a game has been won, the game should NOT exit - this is to allow
+the winner to glory in their victory ! It is however important that your
+controller should accept no further play commands after a win (i.e. no
+additional cells can be claimed) and should not allow the board size to
+be changed. This is to stop the loser carrying on playing after a game
+has already been won !</p>
+<p>Note that if the players wish to play another game, they can reset
+the board in the usual way (by pressing the <code>ESC</code> key).</p>
+<h1 id="section-4"></h1>
+<h3 id="task-6-automated-testing">Task 6: Automated Testing</h3>
+<p>The problem with manual testing is that it can be a very time
+consuming activity to undertake. Imagine trying to test the ‘draw’ state
+for a 9x9 board - this would involve taking 81 separate turns to reach
+the end of the game. Now imagine having to test this draw state a number
+of times (maybe your code didn’t work the first time you tried it - and
+you have to change your code and test it again). This would soon become
+very tedious !</p>
+<p>This is where automated testing can become invaluable - we can test
+the ‘model’ and ‘controller’ components of the system by replacing the
+graphical ‘view’ with an automated test script. The game can then be
+extensively tested without having to click the mouse or press a key.</p>
+<p>We have provided a skeleton test script called
+<code>ExampleControllerTests</code> that can be found in the
+<code>src/test/java/edu/uob</code> folder. You will notice that the file
+has only a couple of test methods in it. You should populate this test
+script with a comprehensive set of test cases that will fully test your
+game. Remember that you can run these tests inside IntelliJ, by clicking
+on the green “run” icons to the left of each method in the editor.
+Alternatively you can run them from the command line using Maven.</p>
+<p>These kinds of test scripts are an essential element of Test-Driven
+Development (TDD) as discussed in the Software Engineering unit. They
+help you to think about what the system needs to do <em>in advance</em>
+of implementation, as well as allowing you to keep track of the correct
+operation of your code, <em>as you develop it</em>. With this in mind,
+you should add a suitable range of tests to your project as you
+progress. Remember that your aim is to cover all required features of
+the game and verify the correct operation of your code in all
+situations.</p>
+<p>Such test cases are not easy to come up with - writing a good set of
+tests is a difficult and time consuming activity. This is because
+writing test cases requires you to perform “problem analysis” in order
+to understand the situation and think about all the possible states of
+the system (something that <em>we</em> did for you in the Triangles
+exercise !). Such analysis is an essential developer skill, as is the
+ability to document the outcomes of this analysis formally as a set of
+test cases.</p>
+<p><strong>Hints &amp; Tips:</strong><br />
+When viewing the example test script, you may have noticed a new test
+feature not previously encountered - the <code>@BeforeEach</code>
+annotation is used to mark a method which will be executed
+<em>before</em> any <code>@Test</code> methods are run. This allows us
+to create a “setup” method that will initialise any instances that are
+required to successfully run a <code>@Test</code> method. You will also
+see the use of the <code>()-&gt;</code> ‘lambda’ expression. Don’t worry
+about this for the moment, we will consider it in more detail in the
+next workbook.</p>
+<h1 id="section-5"></h1>
+<h3 id="task-7-brief-pause">Task 7: Brief Pause</h3>
+<p>When you get to this point in the workbook, you should have
+implemented all of the core features of the OXO game. This is not the
+end of the exercise however - in the next workbook you will get to
+implement an error handling mechanism as well as a number of extensions
+to the basic game. It is worth pausing for a moment to see how far you
+have come. Take a look at your code to see if there is anything that
+could be refactored to improve structure and readability. You should be
+making backups of your work regularly - if you haven’t done so recently,
+now is a good time. Maybe also time for a couple of games of OXO before
+moving on !</p>
+<h1 id="section-6"></h1>
+</body>
+</html>
