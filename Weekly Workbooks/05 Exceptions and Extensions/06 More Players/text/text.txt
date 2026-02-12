@@ -1,0 +1,10 @@
+Although two players is the traditional number in an OXO game, allowing additional players would make for a more interesting game.
+As an extension to the standard game, add features to your code so that it can support any number of players.
+To achieve this you will need to make changes to both the `OXOModel` as well as your `OXOController`.
+You will need to use alternative player characters for the additional players
+(having more than one player who's playing letter is `X` will lead to a lot of confusion !)
+
+You should NOT attempt to alter the `OXOView` or `OXOGame` classes in order to allow the _interactive_ setting of the number of players.
+Instead, you should focus on testing multi-player games by creating additional test cases in your testing script.
+
+Remember to try to ensure that your code is flexible versatile (avoid hard-wiring any particular fixed values) !

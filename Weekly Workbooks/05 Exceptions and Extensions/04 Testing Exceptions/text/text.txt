@@ -1,0 +1,28 @@
+As we have discuss previously, automated testing is a key practice in Software Engineering.
+It is time for you to start applying this practice more extensively in your own work.
+To this end, you should add a set of additional test cases to your automated testing script
+that will trigger (and then check) all of the different types of OXO move exception discussed in the previous section.
+
+There are a number of different ways to do this - perhaps the simplest is to use the `assertThrows` assertion.
+We pass this assertion a particular method to call and an exception that we expect to be thrown.
+If the method does NOT cause the exception, then JUnit will report that the test has failed.
+For example, we could check to make sure that the user input command `aa1` results in an `InvalidIdentifierLengthException`
+using the following code:
+```java
+assertThrows(InvalidIdentifierLengthException.class, ()-> controller.handleIncomingCommand("aa1"));
+```
+
+There are a couple of things to note about this code:  
+
+Firstly, it is important that we pass in the `InvalidIdentifierLengthException` _class_ rather than an _instance_ (object) of that class.
+This is because we want JUnit to check that an instance of the `InvalidIdentifierLengthException` class has been thrown, but we don't care _which_ instance
+(in fact we have no way of predicting which instance has been created).
+
+Secondly, the expression `()->` might look a little bit strange, but it is in fact correct Java syntax !  
+This element is called a **lambda** and it allows us to "bundle up" a method to pass into `assertThrows`:
+- _WITHOUT_ `()->` the code above would run the `handleIncomingCommand` method first, and then pass the _result returned_ into `assertThrows`.
+If an error is encountered, an exception will be thrown _before_ the `handleIncomingCommand` method returns, and as a result there will be _nothing_ to pass into `assertThrows`.
+- _WITH_ `()->` the code above passes the entire `handleIncomingCommand` method into `assertThrows`, so that `assertThrows` can then call it.
+If an error is encountered, an exception will be thrown _inside_ `assertThrows` so that it is able to detect and check that it is of the correct type.
+
+A subtle, yet important distinction !

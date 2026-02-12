@@ -1,0 +1,26 @@
+The 'Win Threshold' is the number of cells in a row required to win a match (3 in a "standard" game).
+It would make for a more interesting game if it were possible to change this threshold during a game.
+To support this feature, the `OXOGame` class includes features that allow the user to interactively alter the win threshold:
+- Pressing the `+` key on the keyboard should increase the win threshold 
+- Pressing the `-` key on the keyboard should decrease the win threshold 
+
+Although the `OXOGame` class is able to detect the pressing of the `+` and `-` keys, the internal win threshold is currently not updated.
+The `increaseWinThreshold` and `decreaseWinThreshold` methods inside `OXOController` are called when the keys are pressed,
+however these two methods are currently empty, so pressing the keys has no effect.
+Add code to the `increaseWinThreshold` and `decreaseWinThreshold` methods in your `OXOController`
+so that they alter the win threshold value held inside the `OXOModel` (by calling the relevant "getter" and "setter" methods).
+
+You should make your code as robust as possible, preventing the data held in the model from getting into any undesirable states.
+Your controller must adhere to the following rules:
+- The minimum win threshold should be 3 (a game with a lower threshold is going to be pretty pointless !).
+- The maximum win threshold should be the current size of the board (whichever dimension is smaller: width or height).
+- Users should NOT be able to _reduce_ the win threshold _during_ a game (only at beginning).
+- It should be possible to increase the win threshold at any point during the game, except that...
+- It should NOT be possible to change the win threshold _after_ a win - gameplay should cease when someone has won !
+
+Note that you should NOT alter the win threshold when the game is reset (i.e. when the `ESC` key is pressed).
+It is up to the players to choose the win threshold for the next game.
+You should also ensure that all game state is stored inside the `OXOModel` and NOT in your `OXOController` (or anywhere else for that matter).
+
+Be sure to add suitable test cases to your test scripts in order to fully test the variable win threshold features
+(including checking that the controller maintains the threshold according to the rules specified above).

@@ -1,0 +1,2 @@
+In this workbook, we will add some extensions to the OXO game that you started in the previous workbook.
+The tasks in this workbook focus on handling errors and implementing some advanced extensions to the basic OXO game.

@@ -1,0 +1,27 @@
+It is more than possible that a user will at some point make a mistake and input a "bad" cell identifier
+(for example, a cell that doesn't exist or one that has already been claimed by one of the players).
+In Java, handling these kinds of unintended run-time errors is achieved using a language feature called **Exceptions**.
+This includes a set of special classes and an error handling mechanism that is part of the Java programming language itself.
+View the slides and video above to gain an understanding of the concept of exceptions and to
+see a demonstration of exceptions in action.
+
+When making use of exceptions in our OXO game, we first need to appreciate the range of the different types of user
+input error that are possible. These include the following:
+
+- Invalid Identifier Length: The entire identifier string is longer (or shorter) than the required two characters
+- Invalid Identifier Character: The row character is not alphabetical and/or the column character is not numerical
+- Outside Range: The identifiers are valid, but they are outside the range of the board size (i.e. too big or too small)
+- Already Taken: The specified cell exists, but it has already been claimed by a player
+
+Note that these input errors are listed in order of precedence (i.e. when processing an incoming command, you should
+check for the errors in the order listed above). The reason for this is that there are some situations where an inputted
+command falls under more than one class of error - in these situations, you should use the first error type detected.
+
+To help you to handle user input errors in your OXO game, we have provided you with a set of exception classes that
+can be used to represent each of the above types of error. Note that all of these exceptions can be found inside the
+`OXOMoveException` file in the template project's `src` folder. At the beginning of this unit we said that there is
+_normally_ a one-to-one mapping between a file and a class. In this situation however we break this convention in the
+interests of a tidy file system ! Each exception class is very short and as such don't warrant individual files of their own.
+
+The exception classes that you have been provided with are illustrated in the class hierarchy shown below
+(note that the notations used in the diagram are from UML - something that you will be studying in the Software Engineering unit !)

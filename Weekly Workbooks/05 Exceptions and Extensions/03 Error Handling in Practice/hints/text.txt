@@ -1,0 +1,7 @@
+Note that in order to be able to access all of the OXO move exceptions introduced in the previous section, you will need to
+`import edu.uob.OXOMoveException.*;` at the top of your controller class.
+
+You may assume a maximum grid size of 9x9 (rows `a`-`i` and columns `1`-`9`)
+so that a cell identifier can ONLY ever be two characters long.
+Note that your code should accept upper as well as lower case row characters
+(e.g. `A1` and `a1` are equivalent and both are acceptable).

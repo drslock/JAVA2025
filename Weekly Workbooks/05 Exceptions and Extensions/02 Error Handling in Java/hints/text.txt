@@ -1,0 +1,1 @@
+Make sure you have a solid grasp of these concepts before moving on to the next section. In the following tasks you will get the opportunity to use the exceptions illustrated above to implement error handling in your OXO game.
